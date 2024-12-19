@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+ 
+
+  <style>
+	@import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+	@font-face {
+  font-family:Agatho;
+  src: url('agatho (5)/Agatho_ LightCAPS.otf');
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+font-family: "Prompt", serif;
+}
+
+
+section {
+	position: relative;
+	margin: 0 80px;
+	transition: .5s ease;
+}
+
+.main-container {
+	position: relative;
+}
+
+/* ===== Tab navigation content ===== */
+.tab-nav-bar {
+	position: relative;
+	margin: 65px 0px 40px 0px;
+}
+
+.tab-navigation {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	max-width: fit-content;
+	margin: 0 auto;
+}
+
+.tab-menu {
+	color: var(--text-color);
+	list-style: none;
+	background-color: var(--third-color);
+	max-width: 1200px;
+	padding: 10px;
+	white-space: nowrap;
+	border-bottom: 1px solid var(--third-color);
+	border-radius: 50px;
+	box-shadow: var(--box-shadow);
+	scroll-behavior: smooth;
+
+	user-select: none;
+	overflow-x: auto;
+}
+
+.tab-menu.dragging {
+	scroll-behavior: unset;
+	cursor: grab;
+}
+
+.tab-menu::-webkit-scrollbar {
+	display: none;
+}
+
+.tab-btn {
+    display: inline-block;
+    color: #553E2E;
+    font-size: 1em;
+    font-weight: 400;
+    margin: 0 2px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    user-select: none;
+    background-color:#E9E0D9; /* เพิ่มสีพื้นหลังเริ่มต้น */
+    transition: background-color .3s ease;
+	font-family: Agatho;
+	font-weight: 300;
+}
+
+.tab-menu.dragging .tab-btn {
+	pointer-events: none;
+}
+
+.tab-btn:hover {
+	background-color: #E9E0D9;
+}
+
+.tab-btn.active {
+	background-color: #553E2E;
+	color: #ffffff;
+}
+
+.left-btn,
+.right-btn {
+	position: absolute;
+	color: var(--text-color);
+	font-size: 1.8em;
+	padding: 10px;
+	cursor: pointer;
+}
+
+.left-btn {
+	left: 0;
+	background: linear-gradient(to left, transparent, var(--first-color) 80%);
+	border-top-left-radius: 30px;
+	border-bottom-left-radius: 30px;
+	display: none;
+}
+
+.right-btn {
+	right: 0;
+	background: linear-gradient(to right, transparent, var(--first-color) 80%);
+	border-top-right-radius: 30px;
+	border-bottom-right-radius: 30px;
+}
+
+
+
+
+/* ===== Tab content ===== */
+.tab-content {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.tab {
+	position: absolute;
+	top: 0;
+	right: auto;
+	bottom: 0;
+	left: auto;
+	max-width: 1100px;
+	padding: 15px 50px;
+	opacity: 0;
+
+	transform: translateX(25px);
+	content-visibility: hidden;
+}
+
+.tab.active {
+	transform: translateX(0);
+	content-visibility: visible;
+	opacity: 1;
+	transition: opacity 1s ease, transform 1s ease;
+}
+
+.tab .row {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin:0px 0 50px 0;
+	gap: 49px;
+}
+
+.tab .img-card {
+	position: relative;
+	width: 450px;
+	max-width: 450px;
+	height: 300px;
+	max-height: 300px;
+	border-radius: 20px;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: var(--box-shadow);
+}
+
+.tab .img-card img {
+	width: 100%;
+	object-fit: cover;
+}
+
+.right-column {
+	max-width: 800px;
+	display: flex;
+    flex-direction: column;
+}
+
+.info .city,
+.info .description p {
+	color: #553E2E;
+	margin-bottom: 10px;
+}
+
+.city {
+	font-size: 35px;
+	font-family: Agatho;
+	margin-bottom: 15px;
+	color: #553E2E;
+	font-weight: 300;
+}
+.city1 {
+	font-size: 30px;
+	color: #553E2E;
+	font-family: Agatho;
+	font-weight: 300;
+}
+
+.country {
+	color: var(--third-color);
+	font-size: 5em;
+	font-weight: 700;
+	text-align: center;
+	text-shadow: var(--text-shadow);
+}
+
+
+
+
+@media screen and (max-width: 1050px) {
+	section {
+		margin: 0 0;
+	}
+
+	.tab-nav-bar {
+		margin: 65px 20px 40px 25px;
+	}
+
+	.tab {
+		padding: 15px 25px;
+	}
+
+	.tab .row {
+		flex-direction: column;
+	}
+
+	.tab .img-card {
+		width: auto;
+		max-width: 600px;
+	}
+
+	.country {
+		font-size: 10vw;
+		padding-bottom: 50px;
+	}
+
+}
+
+.container { 
+  height: 73.5vw;
+  margin: 1vw auto;
+  max-height: 400px;
+  max-width: 400px;
+  overflow: hidden;
+  width: 98vw;
+}
+.container figure { 
+	background-image: url(https://chanisaclinic.com/wp-content/uploads/2024/12/%E0%B8%B3%E0%B8%9E%E0%B9%80%E0%B8%9E%E0%B9%80%E0%B8%9E%E0%B9%80%E0%B8%9E%E0%B8%B0%E0%B9%80-2-1.png);
+  background-size: cover;
+  font-size: 0;
+  height: 100%;
+  margin: 0; 
+  position: relative;
+  width: 100%; 
+}
+#compare {
+
+  background-image: url(https://chanisaclinic.com/wp-content/uploads/2024/12/32-3-2.png);
+  background-size: cover;
+  bottom: 0;
+  border-right: 5px solid rgba(255,255,255,0.7);
+  box-shadow: 10px 0 15px -13px #000;
+  height: 100%;
+  max-width: 98.6%;
+  min-width: 0.6%;
+  overflow: visible;
+  position: absolute;
+  width: 50%; 
+  animation: first 2s 1 normal ease-in-out 0.1s; 
+  -webkit-animation: first 2s 1 normal ease-in-out 0.1s; 
+}
+input#slider {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border: none; 
+  background: transparent;
+  cursor: col-resize;
+  height: 100vw;
+  left: 0;
+  margin: 0;
+  outline: none; 
+  padding: 0;
+  position: relative;
+  top: -100vw;
+  width: 100%;
+}
+input#slider::-moz-range-track { 
+  background: transparent; 
+}
+input#slider::-ms-track {
+  border: none; 
+  background-color: transparent;
+  height: 100vw; 
+  left: 0; 
+  outline: none; 
+  position: relative;
+  top: -100vw; 
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  cursor: col-resize;
+  color:transparent;
+}
+input#slider::-ms-fill-lower {
+  background-color:transparent;
+}
+input#slider::-webkit-slider-thumb {
+  -webkit-appearance:none;
+  height: 100vw;
+  width: 0.5%;
+  opacity: 0;
+}
+input#slider::-moz-range-thumb {
+  -moz-appearance: none;
+  height: 100vw;
+  width: 0.5%;
+  opacity: 0;
+}   
+input#slider::-ms-thumb {
+  height: 100vw;
+  width: 0.5%; 
+  opacity:0;
+}
+input#slider::-ms-tooltip {
+  display:none;
+}
+#compare::before {
+  background: url(https://webdevtrick.com/wp-content/uploads/comparision.png) no-repeat scroll 0 center transparent;
+  background-size:contain;
+  content: " ";
+  float: right;
+  height: 100%;
+  margin-right: -34px;
+  position: relative;
+  top:0;
+  width: 64px;
+}
+@keyframes first {
+  0% {width: 0%; }
+  50% {width: 80%; }
+  100% {width: 50%; }
+}
+@-webkit-keyframes first {
+  0% {width: 0%; }
+  50% {width: 80%; }
+  100% {width: 50%; }
+}
+.image-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.image-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.image-row img {
+  width: 32%;
+  height: auto;
+}
+.left-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.right-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 400px;
+}
+
+.text-top {
+    margin-top: 0;
+}
+
+.text-bottom {
+    margin-bottom: 0;
+	
+}
+
+.text-bottom p{
+   
+	color: #553E2E;
+	font-weight: 400;
+	font-size: 16px;
+}
+
+  </style>
+
+</head>
+<body>
+
+
+
+
+
+<body>
+
+	<section class="main-container">
+		<div class="tab-nav-bar">
+			<div class="tab-navigation">
+
+				<ion-icon class="left-btn" name="chevron-back-outline"></ion-icon>
+				<ion-icon class="right-btn" name="chevron-forward-outline"></ion-icon>
+
+				<ul class="tab-menu">
+					<li class="tab-btn active">ALL</li>
+					<li class="tab-btn">FACIAL DESIGN</li>
+					<li class="tab-btn">COLLAGEN BIOSTIMULATOR</li>
+					<li class="tab-btn">SKIN QUALITY</li>
+					<li class="tab-btn">BODY CONFIDENCE</li>
+					<li class="tab-btn">WELLNESS</li>
+					<li class="tab-btn">LASER BRIGHT</li>
+					
+				</ul>
+			</div>
+		</div>
+
+		<div class="tab-content">
+
+			<div class="tab active">
+				<div class="row">
+					<div class="left-column">
+						<div class="container">
+							<figure>
+								<div id="compare"></div>
+							</figure>
+							<input oninput="beforeAfter()" onchange="beforeAfter()" type="range" min="0" max="100" value="50" id="slider"/>
+						</div>
+					</div>
+					<div class="right-column">
+						<div class="text-container">
+							<div class="text-top">
+								<h2 class="city">INSTANT RESULTS,LASTING BEAUTY</h2>
+								<h3 class="city1">Program Signature Lift</h3>
+							</div>
+							<div class="text-bottom" >
+								<p><span>สัมผัสผิวเต่งตึงและกระชับด้วยโปรแกรม Signature Lift เปิดเผยความงามคุณ<br>
+									ด้วยการผสานเทคนิคการยกกระชับและการฉีดปรับรูปหน้าด้วย<br>
+									โปรแกรมฉีดโบท็อกซ์ ซึ่งช่วยฟื้นฟูคอลลาเจน เพื่อผลการรักษาที่ตรงจุด<br>
+									เปลี่ยนใบหน้าของคุณให้แลดูอ่อนเยาว์และกระชับในทุกมิติ</span></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+				<div class="image-grid">
+					<div class="image-row">
+					  <img src="https://chanisaclinic.com/wp-content/uploads/2024/10/image-2-300x300.png" alt="Image 1">
+					  <img src="https://chanisaclinic.com/wp-content/uploads/2024/10/image-3-300x300.png" alt="Image 2">
+					  <img src="https://chanisaclinic.com/wp-content/uploads/2024/10/image-11-300x300.png" alt="Image 3">
+					</div>
+					<div class="image-row">
+					  <img src="https://chanisaclinic.com/wp-content/uploads/2024/10/image-4-300x300.png" alt="Image 4"> 
+					  <img src="https://chanisaclinic.com/wp-content/uploads/2024/10/image-5-300x300.png" alt="Image 5">
+					  <img src="https://chanisaclinic.com/wp-content/uploads/2024/10/image-6-300x300.png" alt="Image 6">
+					</div>
+				  </div>
+			</div> 
+
+			<div class="tab">
+				<div class="row">
+					<div class="left-column">
+						<div class="img-card">
+							<img src="img/2.jpg" alt="">
+						</div>
+					</div>
+					<div class="right-column">
+						<div class="info">
+							<h2 class="city">Cairo</h2>
+							<div class="description">
+								<p>
+									Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde veniam excepturi fugiat natus hic aspernatur, magnam molestiae! Aut sit enim labore qui, autem quos deleniti eaque eveniet
+									repellat. Fuga, unde.
+								</p>
+								<p>
+									Lorem ipsum dolor sit amet consectetur adipisicing elit.
+									repellat. Fuga, unde.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h3 class="country">Egypt</h3>
+			</div>
+
+			<div class="tab">
+				<div class="row">
+					<div class="left-column">
+						<div class="img-card">
+							<img src="img/3.jpg" alt="">
+						</div>
+					</div>
+					<div class="right-column">
+						<div class="info">
+							<h2 class="city">Rome</h2>
+							<div class="description">
+								<p>
+									Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde veniam excepturi fugiat natus hic aspernatur, magnam molestiae! Aut sit enim labore qui, autem quos deleniti eaque eveniet
+									repellat. Fuga, unde.
+								</p>
+								<p>
+									Lorem ipsum dolor sit amet consectetur adipisicing elit.
+									repellat. Fuga, unde.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h3 class="country">Italy</h3>
+			</div>
+
+			<div class="tab">
+				<div class="row">
+					<div class="left-column">
+						<div class="img-card">
+							<img src="img/4.jpg" alt="">
+						</div>
+					</div>
+					<div class="right-column">
+						<div class="info">
+							<h2 class="city">Paris</h2>
+							<div class="description">
+								<p>
+									Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde veniam excepturi fugiat natus hic aspernatur, magnam molestiae! Aut sit enim labore qui, autem quos deleniti eaque eveniet
+									repellat. Fuga, unde.
+								</p>
+								<p>
+									Lorem ipsum dolor sit amet consectetur adipisicing elit.
+									repellat. Fuga, unde.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h3 class="country">France</h3>
+			</div>
+
+			<div class="tab">
+				<div class="row">
+					<div class="left-column">
+						<div class="img-card">
+							<img src="img/5.jpg" alt="">
+						</div>
+					</div>
+					<div class="right-column">
+						<div class="info">
+							<h2 class="city">Mexico city</h2>
+							<div class="description">
+								<p>
+									Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde veniam excepturi fugiat natus hic aspernatur, magnam molestiae! Aut sit enim labore qui, autem quos deleniti eaque eveniet
+									repellat. Fuga, unde.
+								</p>
+								<p>
+									Lorem ipsum dolor sit amet consectetur adipisicing elit.
+									repellat. Fuga, unde.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h3 class="country">Mexico</h3>
+			</div>
+
+			<div class="tab">
+				<div class="row">
+					<div class="left-column">
+						<div class="img-card">
+							<img src="img/6.jpg" alt="">
+						</div>
+					</div>
+					<div class="right-column">
+						<div class="info">
+							<h2 class="city">Florence</h2>
+							<div class="description">
+								<p>
+									Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde veniam excepturi fugiat natus hic aspernatur, magnam molestiae! Aut sit enim labore qui, autem quos deleniti eaque eveniet
+									repellat. Fuga, unde.
+								</p>
+								<p>
+									Lorem ipsum dolor sit amet consectetur adipisicing elit.
+									repellat. Fuga, unde.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h3 class="country">Italy</h3>
+			</div>
+
+			<div class="tab">
+				<div class="row">
+					<div class="left-column">
+						<div class="img-card">
+							<img src="img/7.jpg" alt="">
+						</div>
+					</div>
+					<div class="right-column">
+						<div class="info">
+							<h2 class="city">New York</h2>
+							<div class="description">
+								<p>
+									Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde veniam excepturi fugiat natus hic aspernatur, magnam molestiae! Aut sit enim labore qui, autem quos deleniti eaque eveniet
+									repellat. Fuga, unde.
+								</p>
+								<p>
+									Lorem ipsum dolor sit amet consectetur adipisicing elit.
+									repellat. Fuga, unde.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h3 class="country">USA</h3>
+			</div>
+
+		
+
+			
+			
+
+			
+
+		</div>
+	</section>
+
+
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+	<script src="script.js"></script>
+</body>
+<!-- partial -->
+  <script>
+	// Code By MakerTEAM ( makerteam.xyz )
+function beforeAfter() {
+  document.getElementById('compare').style.width = document.getElementById('slider').value + "%";
+}
+  </script>
+
+</body>
+</html>
