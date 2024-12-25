@@ -17,7 +17,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-font-family: "Prompt", serif;
+ font-family: "Prompt", serif;
 }
 
 
@@ -34,7 +34,7 @@ section {
 /* ===== Tab navigation content ===== */
 .tab-nav-bar {
 	position: relative;
-	margin: 0px 0px 40px 0px;
+	margin: 65px 0px 40px 0px;
 }
 
 .tab-navigation {
@@ -225,9 +225,9 @@ section {
 		margin: 0 0;
 	}
 
-	.tab-nav-bar {
-		margin: 65px 20px 40px 25px;
-	}
+    .tab-nav-bar {
+        margin: 0px 20px 40px 25px;
+    }
 
 	.tab {
 		padding: 15px 25px;
@@ -361,7 +361,7 @@ input#slider::-ms-tooltip {
 
 .image-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* แสดง 3 รูปต่อแถวสำหรับ PC */
   gap: 20px;
   padding: 20px 0;
 }
@@ -371,6 +371,12 @@ input#slider::-ms-tooltip {
   width: 100%;
   height: auto;
   object-fit: cover;
+ 
+  transition: transform 0.3s ease; /* เพิ่ม animation เวลา hover */
+}
+
+.image-grid img:hover {
+  transform: scale(1.02); /* เพิ่ม hover effect */
 }
 .left-column {
     display: flex;
@@ -431,6 +437,13 @@ input#slider::-ms-tooltip {
     }
 
 	
+	@media screen and (max-width: 1024px) and (min-width: 768px) {
+  .image-grid {
+    grid-template-columns: repeat(2, 1fr); /* แสดง 2 รูปต่อแถวสำหรับแท็บเล็ต */
+    gap: 15px;
+    padding: 15px 0;
+  }
+}
 
 
 /* CSS for mobile phones */
@@ -496,21 +509,20 @@ input#slider::-ms-tooltip {
    
 }
 .image-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr; /* แสดง 1 รูปต่อแถวสำหรับมือถือ */
     gap: 10px;
+    padding: 10px 0;
   }
-
-
+  
+  .image-grid img {
+    max-width: 100%; /* ให้แน่ใจว่าภาพไม่ล้นจอ */
+    margin: 0 auto; /* จัดกึ่งกลาง */
+  }
 
 }
   </style>
-
 </head>
 <body>
-
-
-
-
 
 <body>
 
@@ -527,8 +539,8 @@ input#slider::-ms-tooltip {
 					<li class="tab-btn">COLLAGEN BIOSTIMULATOR</li>
 					<li class="tab-btn">SKIN QUALITY</li>
 					<li class="tab-btn">BODY CONFIDENCE</li>
-					<li class="tab-btn">WELLNESS</li>
-					<li class="tab-btn">LASER BRIGHT</li>
+					<!-- <li class="tab-btn">WELLNESS</li>
+					<li class="tab-btn">LASER BRIGHT</li> -->
 					
 				</ul>
 			</div>
@@ -574,279 +586,185 @@ input#slider::-ms-tooltip {
 			<div class="tab">
 				<div class="row">
 					<div class="left-column">
-						<div class="img-card">
-							<img src="img/2.jpg" alt="">
+						<div class="container">
+							<figure>
+								<div id="compare"></div>
+							</figure>
+							<input oninput="beforeAfter()" onchange="beforeAfter()" type="range" min="0" max="100" value="50" id="slider"/>
 						</div>
 					</div>
 					<div class="right-column">
-						<div class="info">
-							<h2 class="city">Cairo</h2>
-							<div class="description">
-								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde veniam excepturi fugiat natus hic aspernatur, magnam molestiae! Aut sit enim labore qui, autem quos deleniti eaque eveniet
-									repellat. Fuga, unde.
-								</p>
-								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit.
-									repellat. Fuga, unde.
-								</p>
+						<div class="text-container">
+							<div class="text-top">
+								<h2 class="city">INSTANT RESULTS,LASTING BEAUTY</h2>
+								<h3 class="city1">Program Signature Lift</h3>
+							</div>
+							<div class="text-bottom" >
+								<p><span>สัมผัสผิวเต่งตึงและกระชับด้วยโปรแกรม Signature Lift เปิดเผยความงามคุณ<br>
+									ด้วยการผสานเทคนิคการยกกระชับและการฉีดปรับรูปหน้าด้วย<br>
+									โปรแกรมฉีดโบท็อกซ์ ซึ่งช่วยฟื้นฟูคอลลาเจน เพื่อผลการรักษาที่ตรงจุด<br>
+									เปลี่ยนใบหน้าของคุณให้แลดูอ่อนเยาว์และกระชับในทุกมิติ</span></p>
 							</div>
 						</div>
 					</div>
 				</div>
-				<h3 class="country">Egypt</h3>
+				<div class="image-grid">
+					<img src="http://chanisaclinic.com/wp-content/uploads/2024/12/image-25.png" alt="Image 1">
+					<img src="http://chanisaclinic.com/wp-content/uploads/2024/12/image-31.png" alt="Image 2">
+					<img src="https://chanisaclinic.com/wp-content/uploads/2024/10/image-11-300x300.png" alt="Image 3">
+					<img src="http://chanisaclinic.com/wp-content/uploads/2024/12/image-28.png" alt="Image 4">
+					<img src="http://chanisaclinic.com/wp-content/uploads/2024/12/image-29.png" alt="Image 5">
+					<img src="http://chanisaclinic.com/wp-content/uploads/2024/12/image-30.png" alt="Image 6">
+				  </div>
 			</div>
 
 			<div class="tab">
 				<div class="row">
-					<div class="left-column">
-						<div class="img-card">
-							<img src="img/3.jpg" alt="">
+					<!-- <div class="left-column">
+						<div class="container">
+							<figure>
+								<div id="compare"></div>
+							</figure>
+							<input oninput="beforeAfter()" onchange="beforeAfter()" type="range" min="0" max="100" value="50" id="slider"/>
 						</div>
 					</div>
 					<div class="right-column">
-						<div class="info">
-							<h2 class="city">Rome</h2>
-							<div class="description">
-								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde veniam excepturi fugiat natus hic aspernatur, magnam molestiae! Aut sit enim labore qui, autem quos deleniti eaque eveniet
-									repellat. Fuga, unde.
-								</p>
-								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit.
-									repellat. Fuga, unde.
-								</p>
+						<div class="text-container">
+							<div class="text-top">
+								<h2 class="city">INSTANT RESULTS,LASTING BEAUTY</h2>
+								<h3 class="city1">Program Signature Lift</h3>
+							</div>
+							<div class="text-bottom" >
+								<p><span>สัมผัสผิวเต่งตึงและกระชับด้วยโปรแกรม Signature Lift เปิดเผยความงามคุณ<br>
+									ด้วยการผสานเทคนิคการยกกระชับและการฉีดปรับรูปหน้าด้วย<br>
+									โปรแกรมฉีดโบท็อกซ์ ซึ่งช่วยฟื้นฟูคอลลาเจน เพื่อผลการรักษาที่ตรงจุด<br>
+									เปลี่ยนใบหน้าของคุณให้แลดูอ่อนเยาว์และกระชับในทุกมิติ</span></p>
 							</div>
 						</div>
-					</div>
+					</div> -->
+					<div class="image-grid">
+						<img src="http://chanisaclinic.com/wp-content/uploads/2024/12/image-37.png" alt="Image 1">
+						<img src="http://chanisaclinic.com/wp-content/uploads/2024/12/image-38.png" alt="Image 2">
+						<img src="http://chanisaclinic.com/wp-content/uploads/2024/12/image-39.png" alt="Image 3">
+						<img src="http://chanisaclinic.com/wp-content/uploads/2024/12/image-40.png" alt="Image 4">
+						<img src="http://chanisaclinic.com/wp-content/uploads/2024/12/image-41.png" alt="Image 5">
+						<img src="http://chanisaclinic.com/wp-content/uploads/2024/12/image-42-1.png" alt="Image 6">
+					  </div>
 				</div>
-				<h3 class="country">Italy</h3>
+			
 			</div>
 
 			<div class="tab">
 				<div class="row">
-					<div class="left-column">
-						<div class="img-card">
-							<img src="img/4.jpg" alt="">
+					<!-- <div class="left-column">
+						<div class="container">
+							<figure>
+								<div id="compare"></div>
+							</figure>
+							<input oninput="beforeAfter()" onchange="beforeAfter()" type="range" min="0" max="100" value="50" id="slider"/>
 						</div>
 					</div>
 					<div class="right-column">
-						<div class="info">
-							<h2 class="city">Paris</h2>
-							<div class="description">
-								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde veniam excepturi fugiat natus hic aspernatur, magnam molestiae! Aut sit enim labore qui, autem quos deleniti eaque eveniet
-									repellat. Fuga, unde.
-								</p>
-								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit.
-									repellat. Fuga, unde.
-								</p>
+						<div class="text-container">
+							<div class="text-top">
+								<h2 class="city">INSTANT RESULTS,LASTING BEAUTY</h2>
+								<h3 class="city1">Program Signature Lift</h3>
+							</div>
+							<div class="text-bottom" >
+								<p><span>สัมผัสผิวเต่งตึงและกระชับด้วยโปรแกรม Signature Lift เปิดเผยความงามคุณ<br>
+									ด้วยการผสานเทคนิคการยกกระชับและการฉีดปรับรูปหน้าด้วย<br>
+									โปรแกรมฉีดโบท็อกซ์ ซึ่งช่วยฟื้นฟูคอลลาเจน เพื่อผลการรักษาที่ตรงจุด<br>
+									เปลี่ยนใบหน้าของคุณให้แลดูอ่อนเยาว์และกระชับในทุกมิติ</span></p>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
-				<h3 class="country">France</h3>
+				<div class="image-grid">
+					<img src="http://chanisaclinic.com/wp-content/uploads/2024/12/image-53.png" alt="Image 1">
+					<img src="http://chanisaclinic.com/wp-content/uploads/2024/12/image-54.png" alt="Image 2">
+					<img src="http://chanisaclinic.com/wp-content/uploads/2024/12/image-55.png" alt="Image 3">
+					<img src="http://chanisaclinic.com/wp-content/uploads/2024/10/452020198_1079919720159005_4527481028745117999_n.jpg" alt="Image 4">
+					<img src="http://chanisaclinic.com/wp-content/uploads/2024/10/452190331_1079919733492337_3562250874668805160_n.jpg" alt="Image 5">
+					<img src="http://chanisaclinic.com/wp-content/uploads/2024/10/451781850_1079919783492332_2345656495380868187_n.jpg" alt="Image 6">
+				  </div>
 			</div>
 
 			<div class="tab">
 				<div class="row">
-					<div class="left-column">
-						<div class="img-card">
-							<img src="img/5.jpg" alt="">
+					<!-- <div class="left-column">
+						<div class="container">
+							<figure>
+								<div id="compare"></div>
+							</figure>
+							<input oninput="beforeAfter()" onchange="beforeAfter()" type="range" min="0" max="100" value="50" id="slider"/>
 						</div>
 					</div>
 					<div class="right-column">
-						<div class="info">
-							<h2 class="city">Mexico city</h2>
-							<div class="description">
-								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde veniam excepturi fugiat natus hic aspernatur, magnam molestiae! Aut sit enim labore qui, autem quos deleniti eaque eveniet
-									repellat. Fuga, unde.
-								</p>
-								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit.
-									repellat. Fuga, unde.
-								</p>
+						<div class="text-container">
+							<div class="text-top">
+								<h2 class="city">INSTANT RESULTS,LASTING BEAUTY</h2>
+								<h3 class="city1">Program Signature Lift</h3>
+							</div>
+							<div class="text-bottom" >
+								<p><span>สัมผัสผิวเต่งตึงและกระชับด้วยโปรแกรม Signature Lift เปิดเผยความงามคุณ<br>
+									ด้วยการผสานเทคนิคการยกกระชับและการฉีดปรับรูปหน้าด้วย<br>
+									โปรแกรมฉีดโบท็อกซ์ ซึ่งช่วยฟื้นฟูคอลลาเจน เพื่อผลการรักษาที่ตรงจุด<br>
+									เปลี่ยนใบหน้าของคุณให้แลดูอ่อนเยาว์และกระชับในทุกมิติ</span></p>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
-				<h3 class="country">Mexico</h3>
+				<div class="image-grid">
+					<img src="http://chanisaclinic.com/wp-content/uploads/2024/12/image-58.png" alt="Image 1">
+					<img src="http://chanisaclinic.com/wp-content/uploads/2024/12/image-57.png" alt="Image 2">
+					<img src="http://chanisaclinic.com/wp-content/uploads/2024/12/image-56.png" alt="Image 3">
+					
+				  </div>
 			</div>
 
-			<div class="tab">
-				<div class="row">
-					<div class="left-column">
-						<div class="img-card">
-							<img src="img/6.jpg" alt="">
-						</div>
-					</div>
-					<div class="right-column">
-						<div class="info">
-							<h2 class="city">Florence</h2>
-							<div class="description">
-								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde veniam excepturi fugiat natus hic aspernatur, magnam molestiae! Aut sit enim labore qui, autem quos deleniti eaque eveniet
-									repellat. Fuga, unde.
-								</p>
-								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit.
-									repellat. Fuga, unde.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<h3 class="country">Italy</h3>
-			</div>
+			
 
-			<div class="tab">
-				<div class="row">
-					<div class="left-column">
-						<div class="img-card">
-							<img src="img/7.jpg" alt="">
-						</div>
-					</div>
-					<div class="right-column">
-						<div class="info">
-							<h2 class="city">New York</h2>
-							<div class="description">
-								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde veniam excepturi fugiat natus hic aspernatur, magnam molestiae! Aut sit enim labore qui, autem quos deleniti eaque eveniet
-									repellat. Fuga, unde.
-								</p>
-								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit.
-									repellat. Fuga, unde.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<h3 class="country">USA</h3>
-			</div>
+			
 
-			<div class="tab">
-				<div class="row">
-					<div class="left-column">
-						<div class="img-card">
-							<img src="img/8.jpg" alt="">
-						</div>
-					</div>
-					<div class="right-column">
-						<div class="info">
-							<h2 class="city">Vinnitsa</h2>
-							<div class="description">
-								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde veniam excepturi fugiat natus hic aspernatur, magnam molestiae! Aut sit enim labore qui, autem quos deleniti eaque eveniet
-									repellat. Fuga, unde.
-								</p>
-								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit.
-									repellat. Fuga, unde.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<h3 class="country">Ukrain</h3>
-			</div>
-
-			<div class="tab">
-				<div class="row">
-					<div class="left-column">
-						<div class="img-card">
-							<img src="img/9.jpg" alt="">
-						</div>
-					</div>
-					<div class="right-column">
-						<div class="info">
-							<h2 class="city">Minsk</h2>
-							<div class="description">
-								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde veniam excepturi fugiat natus hic aspernatur, magnam molestiae! Aut sit enim labore qui, autem quos deleniti eaque eveniet
-									repellat. Fuga, unde.
-								</p>
-								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit.
-									repellat. Fuga, unde.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<h3 class="country">Belarus</h3>
-			</div>
-
-			<div class="tab">
-				<div class="row">
-					<div class="left-column">
-						<div class="img-card">
-							<img src="img/10.jpg" alt="">
-						</div>
-					</div>
-					<div class="right-column">
-						<div class="info">
-							<h2 class="city">Sydney</h2>
-							<div class="description">
-								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde veniam excepturi fugiat natus hic aspernatur, magnam molestiae! Aut sit enim labore qui, autem quos deleniti eaque eveniet
-									repellat. Fuga, unde.
-								</p>
-								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit.
-									repellat. Fuga, unde.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<h3 class="country">Australia</h3>
-			</div>
-
-			<div class="tab">
-				<div class="row">
-					<div class="left-column">
-						<div class="img-card">
-							<img src="img/11.jpg" alt="">
-						</div>
-					</div>
-					<div class="right-column">
-						<div class="info">
-							<h2 class="city">Amsterdam</h2>
-							<div class="description">
-								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde veniam excepturi fugiat natus hic aspernatur, magnam molestiae! Aut sit enim labore qui, autem quos deleniti eaque eveniet
-									repellat. Fuga, unde.
-								</p>
-								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit.
-									repellat. Fuga, unde.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<h3 class="country">Netherlands</h3>
-			</div>
+		
+			
 
 		</div>
 	</section>
 
 
-	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-	<script src="script.js"></script>
-</body>
-<!-- partial -->
-  <script>
-	// Code By MakerTEAM ( makerteam.xyz )
-function beforeAfter() {
-  document.getElementById('compare').style.width = document.getElementById('slider').value + "%";
-}
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<script>
+    // Tab functionality
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabs = document.querySelectorAll('.tab');
+
+    tabBtns.forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabs.forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+        tabs[index].classList.add('active');
+      });
+    });
+
+    // Before/After slider functionality
+    const slider = document.getElementById('slider');
+    const compareContainer = document.getElementById('compare');
+
+    function updateSlider() {
+      const value = slider.value;
+      compareContainer.style.width = value + '%';
+    }
+
+    slider.addEventListener('input', updateSlider);
+    slider.addEventListener('change', updateSlider);
+
+    // Initialize slider
+    updateSlider();
   </script>
 
 </body>
 </html> 
-
