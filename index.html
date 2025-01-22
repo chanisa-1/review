@@ -741,35 +741,60 @@ input#slider::-ms-tooltip {
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 <script>
-    // Tab functionality
+    
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabs = document.querySelectorAll('.tab');
 
     tabBtns.forEach((btn, index) => {
-      btn.addEventListener('click', () => {
-        tabBtns.forEach(b => b.classList.remove('active'));
-        tabs.forEach(t => t.classList.remove('active'));
-        btn.classList.add('active');
-        tabs[index].classList.add('active');
-      });
-    });
+  btn.addEventListener('click', () => {
+    tabBtns.forEach(b => b.classList.remove('active'));
+    tabs.forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    tabs[index].classList.add('active');
 
-    // Before/After slider functionality
+    
+    const activeTab = tabs[index];
+    const activeSlider = activeTab.querySelector('#slider');
+    const activeCompareContainer = activeTab.querySelector('#compare');
+
+    if (activeSlider && activeCompareContainer) {
+      updateSlider(activeSlider, activeCompareContainer);
+    }
+  });
+});
+
+
+   
     const slider = document.getElementById('slider');
     const compareContainer = document.getElementById('compare');
 
-    function updateSlider() {
-      const value = slider.value;
-      compareContainer.style.width = value + '%';
-    }
+
+function updateSlider(slider, compareContainer) {
+  const value = slider.value;
+  compareContainer.style.width = value + '%';
+}
+
+
+document.querySelectorAll('.tab').forEach((tab) => {
+  const slider = tab.querySelector('#slider');
+  const compareContainer = tab.querySelector('#compare');
+
+  if (slider && compareContainer) {
+    slider.addEventListener('input', () => updateSlider(slider, compareContainer));
+    slider.addEventListener('change', () => updateSlider(slider, compareContainer));
+
+   
+    updateSlider(slider, compareContainer);
+  }
+});
+
 
     slider.addEventListener('input', updateSlider);
     slider.addEventListener('change', updateSlider);
 
-    // Initialize slider
+  
     updateSlider();
   </script>
 
 </body>
 </html> 
-
